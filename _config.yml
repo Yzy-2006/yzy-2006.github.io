@@ -1,6 +1,6 @@
 title: Yzy的毕生所学
 description: 日拱一卒 功不唐捐
-theme: just-the-docs
+remote_theme: just-the-docs/just-the-docs
 
 url: "https://yzy-2006.github.io"
 baseurl: ""
@@ -15,3 +15,6 @@ nav_sort: case_insensitive
 heading_anchors: true
 
 color_scheme: light
+
+plugins:
+  - jekyll-remote-theme
