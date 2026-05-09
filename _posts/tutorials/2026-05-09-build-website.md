@@ -46,7 +46,7 @@ sudo apt install ruby-full build-essential zlib1g-dev
 ruby -v
 gem -v
 ```
-### 2.使用gem按砸湖南给bundle和jekyll
+### 2.使用gem安装bundle和jekyll
 
 在个人开发环境中，我们通常把gem安装到用户目录中，可以避免一些权限问题或者污染系统环境
 
