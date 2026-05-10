@@ -1,11 +1,11 @@
 ---
-title: 网站搭建流程
+title: 网站环境搭建
 description: 如何使用Jekyll的chirpy模板来搭建个人网站
 author: 阎梓瑜
 date: 2026-05-09 15:24:00 +0800
-categories: [Tutorial]
-tags: [jekyll]
-pin: true
+categories: [教程,个人网站]
+tags: [jekyll,chirpy]
+pin: false
 math: true
 mermaid: true
 ---
@@ -109,9 +109,8 @@ bundle exec jekyll serve --port 4001
 ```bash
 bundle exec jekyll serve --drafts --port 4001
 ```
-之后在本地访问[http://127.0.0.1:4001](http://127.0.0.1:4001),如果看到了自己的网站，就说明你的环境搭建成功了
+之后在本地访问[http://127.0.0.1:4001](http://127.0.0.1:4001),如果看到了自己的网站，就说明你的环境搭建成功了，没人觉得这是个很有意思的事情吗
 
 > 默认使用的端口是4000,但是因为我的4000经常被占用，所以我一般用4001
 {: .prompt-info } 
 
-之后网站里的具体内容要如何进行配置我们下期再更新吧，希望大家都能有一个自己的网站。
