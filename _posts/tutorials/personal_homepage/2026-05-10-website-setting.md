@@ -46,4 +46,4 @@ toc: true
 
 ## 网站的LOGO
 
-这个是网站在浏览器显示的时候的小logo，我的现在是伟大的派大星大王，这个我感觉官方的教程就足够用了，链接在这里[(官方教程)](https://chirpy.cotes.page/posts/customize-the-favicon/)。
+这个是网站在浏览器显示的时候的小logo，我的现在是伟大的派大星大王，这个我感觉官方的教程就足够用了，链接在这里[(官方教程)](https://chirpy.cotes.page/posts/customize-the-favicon/)
