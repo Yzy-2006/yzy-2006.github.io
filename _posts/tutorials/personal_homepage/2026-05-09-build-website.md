@@ -114,3 +114,8 @@ bundle exec jekyll serve --drafts --port 4001
 > 默认使用的端口是4000,但是因为我的4000经常被占用，所以我一般用4001
 {: .prompt-info } 
 
+### 一些奇奇怪怪的问题
+
+1. 我发现我的网站本地很正常但是推送到远程出问题了，一直没有更新我新写的文章
+
+> 要把`GitHub pages`的发布方式改为`GitHub Actions`
