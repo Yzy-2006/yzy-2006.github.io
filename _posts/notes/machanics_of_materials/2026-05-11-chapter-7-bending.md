@@ -4,7 +4,7 @@ description: 材料力学第7章笔记
 author: 阎梓瑜
 date: 2026-05-11 15:53:00 +0800
 categories: [笔记,材料力学]
-tags: [材料力学,弯曲]
+tags: [材料力学]
 pin: false
 math: true
 mermaid: true
