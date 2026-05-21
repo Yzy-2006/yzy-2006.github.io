@@ -144,7 +144,8 @@ $$
 ### 三、按凸轮轮廓全部外凸条件确定基圆半径(针对直动平底从动件)
 
 $$
-r_0 \geq (\rho_{\min}-s-s'')_{\max}  (0 \leq \varphi \leq 2\pi)
+r_0 \geq (\rho_{\min}-s-s'')_{\max}  \
+ (0 \leq \varphi \leq 2\pi)
 $$
 
 ### 四、滚子半径的选择
