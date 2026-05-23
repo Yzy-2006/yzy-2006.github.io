@@ -80,3 +80,70 @@ $$
 $$
 
 ![表格](/assets/img/posts/notes/machanics_of_materials/chapter7/sheet.png)
+
+## 7-4 纯弯曲梁的正应力
+
+### 纯弯曲和剪力弯曲的概念
+
+**纯弯曲：** 梁的横截面上只有弯矩的弯曲
+
+**剪力弯曲：** 梁的横截面上既有弯矩又有剪力的弯曲
+
+### 静力平衡方程
+
+![静力平衡](assets/img/posts/notes/machanics_of_materials/chapter7/7-13a.png){: .w-50 .normal}
+
+$$
+\sum F_x = 0
+\qquad
+\iint_A -\sigma_x \,\mathrm{d}A = 0
+$$
+
+$$
+\sum M_y = 0
+\qquad
+\iint_A -z\sigma_x \,\mathrm{d}A = 0
+$$
+
+$$
+\sum M_z = 0
+\qquad
+\iint_A y\sigma_x \,\mathrm{d}A - M_z = 0
+$$
+
+### 几何方程
+
+**平面假设：** 假设梁弯曲变形后，横截面仍保持为平面，并发生相对转动，与变形后的轴线依然正交
+
+**中性层：** 纵向线段不伸长也不缩短
+
+**中性线：** 中性层与任一横截面的交线   
+
+![几何变形](assets/img/posts/notes/machanics_of_materials/chapter7/7-14.png)
+
+$$
+\varepsilon_x
+= \frac{(\rho-y)\mathrm{d}\theta-\mathrm{d}x}{\mathrm{d}x}
+= \frac{(\rho-y)\mathrm{d}\theta-\rho\,\mathrm{d}\theta}{\rho\,\mathrm{d}\theta}
+= -\frac{y}{\rho}
+$$
+
+### 物理方程
+
+$$
+\sigma_x = E\varepsilon_x = -E\frac{y}{\rho}
+$$
+
+### 横截面上正应力公式
+
+$$
+\iint_A -E\frac{y}{\rho}\,\mathrm{d}A
+= -\frac{E}{\rho}\iint_A y\,\mathrm{d}A = 0
+$$
+
+$$
+\iint_A -E\frac{y}{\rho}\,\mathrm{d}A
+= -\frac{E}{\rho}\iint_A y\,\mathrm{d}A = 0
+$$
+
+由此可知，截面的中性轴$z$为截面的**形心轴**
