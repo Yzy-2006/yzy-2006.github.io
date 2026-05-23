@@ -136,14 +136,244 @@ $$
 
 ### 横截面上正应力公式
 
-$$
-\iint_A -E\frac{y}{\rho}\,\mathrm{d}A
-= -\frac{E}{\rho}\iint_A y\,\mathrm{d}A = 0
-$$
+#### y轴和z轴的几何位置
 
 $$
 \iint_A -E\frac{y}{\rho}\,\mathrm{d}A
 = -\frac{E}{\rho}\iint_A y\,\mathrm{d}A = 0
 $$
 
-由此可知，截面的中性轴$z$为截面的**形心轴**
+$$
+\iint_A y\, dA = 0
+$$
+
+由此可知，截面的中性轴$z$为截面的**形心轴**；由于$y$轴本身就是截面的对称轴，所以$y$轴也是**形心轴**
+
+$$
+\iint_A
+\left(
+-z\cdot E\frac{y}{\rho}
+\right)dA
+=
+-\frac{E}{\rho}
+\iint_A zy\, dA
+=
+0
+$$
+
+由此可知，$y$轴和$z$轴是**主轴**
+
+综上，$y$轴和$z$轴是**形心主轴**
+
+#### 纯弯曲梁变形公式
+
+$$
+\frac{E}{\rho}
+\iint_A y^2\, dA
+=
+M_z
+$$
+
+$$
+\frac{1}{\rho}
+=
+\frac{M_z}{EI_z}
+$$
+
+式子中$\frac{1}{\rho}$是中性层的曲率，即梁的轴线弯曲后的曲率，$EI_z$称为**抗弯刚度**
+
+#### 横截面上正应力公式
+
+$$
+\sigma_x
+=
+-\frac{M_z}{I_z}y
+$$
+
+#### 最大弯曲正应力
+
+$$
+|\sigma_x|_{\max}
+=
+\frac{|M_z|}{I_z}|y|_{\max}
+=
+\frac{|M_z|}{W_z}
+$$
+
+其中$W_z=\frac{I_z}{|y|_{\max}}$成为**抗弯截面系数**
+
+>对于矩形截面，$W_z=\frac{bh^2}{6}$；对于圆截面，$W_z=\frac{\pi D^3}{32}(1-\alpha^4)$
+{: .prompt-info}
+
+## 7-6 剪力弯曲切应力
+
+### 矩形截面梁的弯曲切应力
+
+![截面梁的弯曲切应力](assets/img/posts/notes/machanics_of_materials/chapter7/7-21.jpg)
+
+![微段的力分析](assets/img/posts/notes/machanics_of_materials/chapter7/7-22.jpg)
+
+$$
+F_{x2}^{*}
+=
+\iint_{A^{*}} \sigma_{x2}\, dA
+=
+\iint_{A^{*}}
+\frac{M_z+dM_z}{I_z}
+y^{*}\, dA
+=
+\frac{M_z+dM_z}{I_z}
+\iint_{A^{*}} y^{*}\, dA
+=
+\frac{M_z+dM_z}{I_z}S_z^{*}
+$$
+
+同理可得
+
+$$
+F_{x1}^*
+=
+\frac{M_z}{I_z}S_z^*
+$$
+
+由受力平衡可知
+
+$$
+F_{x1}^*-F_{x2}^*-dF_x'=0
+$$
+
+因为$dF_x'=\tau_{yx}b\mathrm{d}x$
+
+$$
+\tau_{yx}
+=
+-\frac{dM_z}{dx}
+\frac{S_z^*}{bI_z}
+=
+\frac{F_{sy}S_z^*}{bI_z}
+$$
+
+由于$\frac{\mathrm{d} M_z}{\mathrm{d} x}=-F_{S_y}$，可得切应力的计算公式
+
+$$
+\tau_{xy}
+=
+\tau_{yx}
+=
+\frac{F_{sy}S_z^*}{bI_z}
+$$
+
+部分面积对中性轴的静矩为
+
+$$
+S_z^*
+=
+\int_{A^*} y\,dA
+=
+\int_y^{h/2} y' b\,dy'
+=
+\frac{b}{2}
+\left(
+\frac{h^2}{4}-y^2
+\right)
+$$
+
+代入切应力计算公式
+
+$$
+\tau_{xy}
+=
+\frac{F_{sy}}{2I_z}
+\left(
+\frac{h^2}{4}-y^2
+\right)
+$$
+
+切应力的最大值为
+
+$$
+\tau_{xy\max}
+=
+\frac{F_{sy}h^2}{8I_z}
+=
+\frac{3}{2}
+\frac{F_{sy}}{bh}
+$$
+
+切应变为
+
+$$
+\gamma_{xy}
+=
+\frac{\tau_{xy}}{G}
+=
+\frac{F_{sy}}{2GI_z}
+\left(
+\frac{h^2}{4}-y^2
+\right)
+$$
+
+### 工字形截面梁的弯曲切应力
+
+![工字形截面梁](assets/img/posts/notes/machanics_of_materials/chapter7/7-25.jpg)
+
+对于腹板，计算与矩形截面梁相同
+
+$$
+\tau_{xy}
+=
+\frac{F_{sy}S_z^*}{dI_z}
+$$
+
+对于翼缘，$y$方向上的切应力分量非常小，可以忽略不计
+
+$$
+\tau_{xz}
+=
+\frac{F_{sy}S_z^*}{\delta I_z}
+$$
+
+但是，$z$方向上的切应力分量与腹板上的比较也是次要的
+
+>工字梁的腹板承担绝大部分的**剪力**，翼缘承担绝大部分的**弯矩**
+{: .prompt-info}
+
+### 圆形截面梁的弯曲切应力
+
+![圆形截面梁](assets/img/posts/notes/machanics_of_materials/chapter7/7-26.jpg)
+
+$$
+\tau_{xy}
+=
+\frac{F_sS_z^*}{bI_z}
+$$
+
+最大切应力为平均切应力的$\frac{4}{3}$倍
+
+$$
+\tau_{xy\max}
+=
+\frac{4}{3}
+\frac{F_s}{\pi R^2}
+$$
+
+### 环形截面梁的切应力
+
+![环形截面梁](assets/img/posts/notes/machanics_of_materials/chapter7/7-27.jpg)
+
+对于壁厚远小于平面半径的环形截面梁，可以认为切应力沿厚度均匀分布且与圆周相切
+
+$$
+\tau
+=
+\frac{F_sS_z^*}{2\delta I_z}
+$$
+
+$$
+\tau_{xy\max}
+=
+\frac{F_{sy}}{\pi R\delta}
+$$
+
+>对于细长的实心截面梁或非薄壁截面梁，正应力是强度问题的主要考虑因素
+{: .prompt-info}
