@@ -11,6 +11,7 @@ mermaid: true
 ---
 
 # 官方文档
+
 [官方教程](https://chirpy.cotes.page/)
 > 其实我就是对着官方的教程然后和AI一起搭的，不过我相信屏幕前的各位可能也懒得去看英文教程
 {: .prompt-info } 
@@ -18,6 +19,7 @@ mermaid: true
 > 但是因为我是在Ubuntu系统里进行开发的，所以某些细节可能和Windows不太一样，Windows里边可能需要使用容器，这个就要自己看官方教程或者问AI了
 {: .prompt-warning }
 # 核心工具
+
 - `Jekyll`：站点生成器
 - `gem`：Ruby 包管理命令
 - `bundle`：项目级依赖管理工具
@@ -29,7 +31,9 @@ mermaid: true
 {: .prompt-info } 
 
 # 环境准备
+
 ## 1.安装Ruby和编译依赖
+
 ```bash
 sudo apt update
 sudo apt install ruby-full build-essential zlib1g-dev
@@ -42,6 +46,7 @@ ruby -v
 gem -v
 ```
 ## 2.使用gem安装bundle和jekyll
+
 在个人开发环境中，我们通常把gem安装到用户目录中，可以避免一些权限问题或者污染系统环境
 
 ```bash
@@ -60,7 +65,9 @@ jekyll -v
 
 
 # 搭建流程
+
 ## 1.创建仓库
+
 在github上打开官方的仓库，我知道大家可能也找不到仓库在哪里，所以地址也给大家准备好了
 
 [仓库地址](https://github.com/cotes2020/chirpy-starter)
@@ -84,6 +91,7 @@ git clone <你的仓库地址>
 ```
 
 ## 2.安装Ruby依赖
+
 如果你按照官方教程里的办法直接使用`bundle install`，应该不出意外会遇到权限问题，所以我们通常设置一下安装的路径
 
 ```bash
@@ -92,6 +100,7 @@ bundle install
 ```
 
 ## 3.运行网站
+
 ```bash
 bundle exec jekyll serve --port 4001
 ```
@@ -105,6 +114,7 @@ bundle exec jekyll serve --drafts --port 4001
 {: .prompt-info } 
 
 ## 一些奇奇怪怪的问题
+
 1. 我发现我的网站本地很正常但是推送到远程出问题了，一直没有更新我新写的文章
 
 > 要把`GitHub pages`的发布方式改为`GitHub Actions`

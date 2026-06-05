@@ -11,7 +11,9 @@ mermaid: true
 ---
 
 # 7-1 梁的内力 剪力与弯矩
+
 ## 7-1-1 基本概念
+
 **弯曲变形:** 由直线变成曲线的变形形式
 **梁：** 以弯曲为主要变形的杆件
 
@@ -27,6 +29,7 @@ mermaid: true
 ![平面弯曲构件](/assets/img/posts/notes/machanics_of_materials/chapter7/bending_member.png){: .w-50 .right}
 
 ## 7-1-2 平面弯曲构件的特点
+
 **受力特点**
 
 1. 构件存在纵轴线和对称平面
@@ -38,6 +41,7 @@ mermaid: true
 纵轴线由直线变成曲线，但仍位于对称平面内
 
 ## 7-1-3 剪力和弯矩的正负号规定
+
 ![剪力和弯矩的方向](/assets/img/posts/notes/machanics_of_materials/chapter7/shear_force_symbol.png){: .w-75 .normal}
 
 > **剪力方向的判断：**使用右手定则，指向纸面外为正(左下角坐标系z轴的正方向)  
@@ -45,12 +49,15 @@ mermaid: true
 {: .prompt-tip }
 
 # 7-2 剪力图与弯矩图
+
 ![剪力图与弯矩图](/assets/img/posts/notes/machanics_of_materials/chapter7/shear_bending_moment_diagram.png){: .w-50 .right}
 
 ## 7-2-1 定义
+
 以横坐标x表示梁的截面位置，纵坐标表示剪力和弯矩的数值
 
 ## 7-2-2 性质
+
 1. **集中力作用处：**剪力发生突变，突变量为集中力的数值；弯矩连续，但出现折点(斜率不连续)
 2. **集中力偶作用处：**弯矩不连续，发生突变，但剪力不受影响。
 
@@ -58,6 +65,7 @@ mermaid: true
 {: .prompt-tip}
 
 # 7-3 载荷、剪力及弯矩间的关系
+
 $$
 \frac{dF_s(x)}{dx} = -q(x)
 $$
@@ -73,12 +81,15 @@ $$
 ![表格](/assets/img/posts/notes/machanics_of_materials/chapter7/sheet.png)
 
 # 7-4 纯弯曲梁的正应力
+
 ## 7-4-1 纯弯曲和剪力弯曲的概念
+
 **纯弯曲：** 梁的横截面上只有弯矩的弯曲
 
 **剪力弯曲：** 梁的横截面上既有弯矩又有剪力的弯曲
 
 ## 7-4-2 静力平衡方程
+
 ![静力平衡](assets/img/posts/notes/machanics_of_materials/chapter7/7-13a.png){: .w-50 .normal}
 
 $$
@@ -100,6 +111,7 @@ $$
 $$
 
 ## 7-4-3 几何方程
+
 **平面假设：** 假设梁弯曲变形后，横截面仍保持为平面，并发生相对转动，与变形后的轴线依然正交
 
 **中性层：** 纵向线段不伸长也不缩短
@@ -116,12 +128,15 @@ $$
 $$
 
 ## 7-4-4 物理方程
+
 $$
 \sigma_x = E\varepsilon_x = -E\frac{y}{\rho}
 $$
 
 ## 7-4-5 横截面上正应力公式
+
 ### y轴和z轴的几何位置
+
 $$
 \iint_A -E\frac{y}{\rho}\,\mathrm{d}A
 = -\frac{E}{\rho}\iint_A y\,\mathrm{d}A = 0
@@ -150,6 +165,7 @@ $$
 综上，$y$轴和$z$轴是**形心主轴**
 
 ### 纯弯曲梁变形公式
+
 $$
 \frac{E}{\rho}
 \iint_A y^2\, dA
@@ -166,6 +182,7 @@ $$
 式子中$\frac{1}{\rho}$是中性层的曲率，即梁的轴线弯曲后的曲率，$EI_z$称为**抗弯刚度**
 
 ### 横截面上正应力公式
+
 $$
 \sigma_x
 =
@@ -173,6 +190,7 @@ $$
 $$
 
 ### 最大弯曲正应力
+
 $$
 |\sigma_x|_{\max}
 =
@@ -187,7 +205,9 @@ $$
 {: .prompt-info}
 
 # 7-6 剪力弯曲切应力
+
 ## 7-6-1 矩形截面梁的弯曲切应力
+
 ![截面梁的弯曲切应力](assets/img/posts/notes/machanics_of_materials/chapter7/7-21.jpg)
 
 ![微段的力分析](assets/img/posts/notes/machanics_of_materials/chapter7/7-22.jpg)
@@ -293,6 +313,7 @@ $$
 $$
 
 ## 7-6-2 工字形截面梁的弯曲切应力
+
 ![工字形截面梁](assets/img/posts/notes/machanics_of_materials/chapter7/7-25.jpg)
 
 对于腹板，计算与矩形截面梁相同
@@ -317,6 +338,7 @@ $$
 {: .prompt-info}
 
 ## 7-6-3 圆形截面梁的弯曲切应力
+
 ![圆形截面梁](assets/img/posts/notes/machanics_of_materials/chapter7/7-26.jpg)
 
 $$
@@ -335,6 +357,7 @@ $$
 $$
 
 ## 7-6-4 环形截面梁的切应力
+
 ![环形截面梁](assets/img/posts/notes/machanics_of_materials/chapter7/7-27.jpg)
 
 对于壁厚远小于平面半径的环形截面梁，可以认为切应力沿厚度均匀分布且与圆周相切
@@ -355,7 +378,9 @@ $$
 {: .prompt-info}
 
 # 7-8 梁的弹性弯曲变形
+
 ## 7-8-1 基本概念
+
 **挠曲线：** 梁变形后的轴线，应该是一条光滑连续的平面曲线
 
 **挠度：** 横截面形心沿垂直于轴线方向的位移，用$v$表示，**向上为正**
@@ -371,6 +396,7 @@ $$
 $$
 
 ## 7-8-2 挠曲线与弯矩的关系
+
 $$
 \frac{1}{\rho(x)} = \frac{M(x)}{EI_z}
 $$
@@ -391,6 +417,7 @@ $$
 {: .prompt-info}
 
 ## 7-8-3 求挠曲线时的边界条件和连续条件
+
 **固定端支座处：** 挠度和转角均为零
 
 **固定铰支座处：** 挠度为零
@@ -398,4 +425,5 @@ $$
 **弯矩方程分段处：** 左右两截面的挠度和转角相等
 
 ## 7-8-4 叠加原理和叠加法求变形
+
 **叠加原理：** 各载荷同时作用时的挠度和转角等于各载荷分别作用饰挠度和转角的代数和

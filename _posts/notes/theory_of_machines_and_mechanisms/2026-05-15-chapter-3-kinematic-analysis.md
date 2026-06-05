@@ -11,7 +11,9 @@ mermaid: true
 ---
 
 # 3-2 用速度瞬心法对平面机构进行速度分析
+
 ## 一、速度瞬心和机构中速度瞬心的数目
+
 **速度瞬心：** 相对作平面运动的两构件上瞬时相对速度等于零的点
 含有$m$个构件 **(包含机架)** 的机构，其速度瞬心的数目$K$为
 
@@ -20,16 +22,21 @@ K=\frac{m(m-1)}{2}
 $$
 
 ## 二、机构中速度瞬心位置的确定
+
 ### 1.直接构成运动副两构件的速度瞬心位置
+
 1. **转动副：**转动副的中心即为两构件的速度瞬心
 2. **移动副：**速度瞬心在垂直于导路方向的无穷远处
 3. **平面高副：**纯滚动时接触点即为速度瞬心；既作相对滚动又作相对滑动时速度瞬心在接触点处的公法线上
 
 ### 2.不直接构成运动副两构件的速度瞬心位置
+
 **三心定理：**三个作平面运动的构件的三个速度瞬心必在同一条直线上                              
 
 ## 三、速度瞬心法在平面机构速度分析中的应用
+
 ### 1.铰链四杆机构
+
 可以确定主动件和从动件的角速度之比
 
 ![铰链四杆机构](assets/img/posts/notes/theory_of_machines_and_machanism/chapter3/four-bar_linkage.png)
@@ -46,6 +53,7 @@ $$
 {: .prompt-tip }
 
 ### 2.曲柄滑块机构
+
 可以求滑块的移动速度
 
 ![曲柄滑块机构](assets/img/posts/notes/theory_of_machines_and_machanism/chapter3/slider_crank.png)
@@ -66,6 +74,7 @@ $$
 
 
 ### 3.凸轮机构
+
 ![凸轮机构](assets/img/posts/notes/theory_of_machines_and_machanism/chapter3/cam.png)
 
 $$
@@ -76,6 +85,7 @@ $$
 {: .prompt-tip }
 
 ### 4.齿轮-连杆机构
+
 ![齿轮连杆机构](assets/img/posts/notes/theory_of_machines_and_machanism/chapter3/gear_linkage.png)
 
 **瞬心多边形法**

@@ -11,12 +11,16 @@ mermaid: true
 ---
 
 # 4-1 力分析的基本知识
+
 **驱动力（输入力）：**驱使机械运动的力，所作的功为输入功
 **阻力：**阻碍机械运动的力，所作的功称为损耗功
 
 # 4-3 运动副中的摩擦和计及摩擦时机构的力分析
+
 ## 一、移动副中的摩擦与自锁
+
 ### 1.移动副中的摩擦
+
 **平面移动副**
 
 ![平面移动副](assets/img/posts/notes/theory_of_machines_and_machanism/chapter4/planar_prismatic_pair.png)
@@ -200,6 +204,7 @@ $$
 {: .prompt-info }
 
 ### 2.移动副的自锁
+
 ![移动副自锁](assets/img/posts/notes/theory_of_machines_and_machanism/chapter4/planar_prismatic_pair.png)
 
 $$
@@ -207,7 +212,9 @@ $$
 $$
 
 ## 二、转动副的摩擦与自锁
+
 ### 1.径向轴颈与轴承的摩擦
+
 ![径向轴径](assets/img/posts/notes/theory_of_machines_and_machanism/chapter4/radial_journal.png)
 
 ***1）未经过跑合***
@@ -236,6 +243,7 @@ $$
 {: .prompt-info }
 
 ### 2.径向轴颈与轴承的自锁
+
 ![轴向自锁](assets/img/posts/notes/theory_of_machines_and_machanism/chapter4/self_lock.png)
 
 无论径向轴径和轴承之间是面接触还是线接触，最终都可以看成驱动力矩$M$、径向载荷$G$，法向反力$F_{N21}$和摩擦力$F_{f21}$作用下的平衡问题
@@ -273,13 +281,16 @@ $$
 {: .prompt-tip }
 
 ## 三、计及摩擦饰平面连杆机构的力分析
+
 1. 计算出摩擦角和摩擦圆半径，并画出摩擦圆
 2. 从二力构件着手分析
 3. 对有已知力作用的构件作力分析
 4. 对未知力所在构件进行力分析
 
 # 4-4 机械的效率和自锁
+
 ## 一、机械效率
+
 $$
 P_d = P_r + P_f
 $$
@@ -311,6 +322,7 @@ $$
 $$
 
 ## 二、机械自锁
+
 机械发生自锁的条件:
 
 $$
