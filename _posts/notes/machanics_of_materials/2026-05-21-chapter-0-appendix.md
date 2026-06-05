@@ -10,10 +10,8 @@ math: true
 mermaid: true
 ---
 
-## 一、静矩 形心
-
-### 1.静矩
-
+# 一、静矩 形心
+## 1.静矩
 $$
 \left\{
 \begin{aligned}
@@ -22,9 +20,7 @@ S_z = \int_A y \operatorname{d}\! A
 \end{aligned}
 \right.
 $$
-
-### 2.形心
-
+## 2.形心
 $$
 \left\{
 \begin{aligned}
@@ -34,12 +30,10 @@ $$
 \right.
 $$
 
-### 3.形心轴
-
+## 3.形心轴
 若截面对某一坐标轴的静矩为零，则该坐标轴必通过截面的形心，即为**形心轴**
 
-### 4.组合图形的形心计算
-
+## 4.组合图形的形心计算
 $$
 \left\{
 \begin{aligned}
@@ -54,10 +48,8 @@ z_c
 \right.
 $$
 
-## 二、惯性矩 极惯性矩 惯性积 惯性半径
-
-### 1. 惯性矩
-
+# 二、惯性矩 极惯性矩 惯性积 惯性半径
+## 1. 惯性矩
 $$
 \left\{
 \begin{aligned}
@@ -68,23 +60,20 @@ I_z=\int_A y^2 \operatorname{d} \! A
 \right.
 $$
 
-### 2. 极惯性矩
-
+## 2. 极惯性矩
 $$
 I_p = \int_A \rho^2 \operatorname{d} \! A = \int_A (y^2 + z^2) \operatorname{d} \! A = I_z + I_y
 $$
 
->对于空心圆截面，$I_y=I_z=\frac{I_p}{2}=\frac{\phi D^4}{64} (1-\alpha^4)$
+>对于空心圆截面，$I_y=I_z=\frac{I_p}{2}=\frac{\pi D^4}{64} (1-\alpha^4)$
 {: .prompt-tip}
 
-### 3. 惯性积
-
+## 3. 惯性积
 $$
 I_{yz} = \int_A  yz \operatorname{d} \! A
 $$
 
-### 4.惯性半径
-
+## 4.惯性半径
 $$
 \left\{
 \begin{aligned}
@@ -95,8 +84,7 @@ i_z=\sqrt{\frac{I_z}{A}}
 \right.
 $$
 
-### 三、平行移轴公式
-
+## 三、平行移轴公式
 $$
 \left\{
 \begin{aligned}
@@ -109,8 +97,7 @@ I_{yz}&=I_{y_C z_C}+\overline{yz} A
 \right.
 $$
 
-### 四、转轴公式
-
+## 四、转轴公式
 $$
 \left\{
 \begin{aligned}
@@ -139,8 +126,7 @@ I_{zy}\cos 2\alpha
 \right.
 $$
 
-### 五、主轴 主惯性矩 形心主轴 形心主惯性矩
-
+## 五、主轴 主惯性矩 形心主轴 形心主惯性矩
 **主轴：** 惯性矩有极值、惯性积为零的轴
 
 **主惯性矩：** 对主轴的惯性矩

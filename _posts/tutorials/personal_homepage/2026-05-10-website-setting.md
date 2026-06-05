@@ -10,11 +10,8 @@ math: true
 mermaid: true
 ---
 
-## 网站基础信息
-
+# 网站基础信息
 修改`_config.yml`,目前先改这些吧，其实是我目前只会这些，将来可能加一下评论系统
-
-
 ```yaml
 #语言，这里需要到官方仓库里下载语言配置文件，放到_data/locales/zh-CN.yml
 lang: zh-CN
@@ -44,6 +41,5 @@ avatar: /assets/img/yzy.jpg
 toc: true
 ```
 
-## 网站的LOGO
-
+# 网站的LOGO
 这个是网站在浏览器显示的时候的小logo，我的现在是伟大的派大星大王，这个我感觉官方的教程就足够用了，链接在这里[(官方教程)](https://chirpy.cotes.page/posts/customize-the-favicon/)
