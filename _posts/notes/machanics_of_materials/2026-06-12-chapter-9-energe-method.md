@@ -91,3 +91,42 @@ $$
 **三次抛物线**
 
 ![三次抛物线](assets/img/posts/notes/machanics_of_materials/chapter9/9-3.png){: .w-50 ,normal}
+
+
+## 9-2 冲击
+
+### 自由落体冲击
+
+$$
+k_d
+=
+\frac{\Delta_d}{\Delta_{\mathrm{st}}}
+=
+1+\sqrt{1+\frac{2h}{\Delta_{\mathrm{st}}}}
+$$
+
+$$
+F_d=k_dQ
+$$
+
+$$
+\sigma_d=k_d\sigma_{\mathrm{st}}
+$$
+
+### 水平冲击
+
+$$
+k_d=V\sqrt{\frac{1}{g\Delta_{\mathrm{st}}}}
+$$
+
+$$
+\Delta_d=k_d\Delta_{\mathrm{st}}
+$$
+
+$$
+F_d=k_dmg
+$$
+
+$$
+\sigma_d=k_d\sigma_{\mathrm{st}}
+$$
