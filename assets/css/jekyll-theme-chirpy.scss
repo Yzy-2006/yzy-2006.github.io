@@ -1,0 +1,17 @@
+---
+---
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* Make Markdown horizontal rules visible in post content. */
+.content hr {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 2px solid var(--text-muted-color);
+  opacity: 0.7;
+}
