@@ -4,7 +4,7 @@ description: 扩散策略学习笔记
 author: 阎梓瑜
 date: 2026-08-30 12:00:00 +0800
 categories: [笔记,机器人学习]
-tags: [模仿学习，ACT]
+tags: [模仿学习，扩散策略]
 pin: false
 math: true
 mermaid: true
@@ -245,5 +245,310 @@ o\rightarrow A
 }
 $$
 
->实际学习的是当前这个 noisy action $A_k$，在 observation $o$ 下，应该往哪个方向去噪，才能更接近真实动作数据的高概率区域。
+>实学习的是当前这个 noisy action $A_k$，在 observation $o$ 下，应该往哪个方向去噪，才能更接近真实动作数据的高概率区域。
 {: .prompt-info}
+
+## 七、Score Function
+
+### Score Function的概念
+
+假设我们有一个概率模型：
+
+$$
+p_\theta(x)
+$$
+
+其中：
+
+- $x$：观测数据
+- $\theta$：模型参数
+- $p_\theta(x)$：参数为 $\theta$ 时，观察到 $x$ 的概率密度/概率
+
+统计学中的 **score function** 定义为：
+
+$$
+s(\theta; x) = \nabla_\theta \log p_\theta(x)
+$$
+
+也就是说：
+
+> **score function 是 log-likelihood 对模型参数 $\theta$ 的梯度。**
+
+一维参数时就是：
+
+$$
+s(\theta; x)
+=
+\frac{\partial}{\partial \theta}
+\log p_\theta(x)
+$$
+
+### 高斯分布的Score Function
+
+假设：
+
+$$
+X \sim \mathcal{N}(\mu, \sigma^2)
+$$
+
+先假设 $\sigma^2$ 已知，只需要估计 $\mu$。
+
+概率密度：
+
+$$
+p_\mu(x)
+=
+\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(
+-\frac{(x-\mu)^2}{2\sigma^2}
+\right)
+$$
+
+取 log：
+
+$$
+\log p_\mu(x)
+=
+-\frac{1}{2}\log(2\pi\sigma^2)
+-
+\frac{(x-\mu)^2}{2\sigma^2}
+$$
+
+对 $\mu$ 求导：
+
+$$
+s(\mu;x)
+=
+\frac{\partial}{\partial \mu}
+\log p_\mu(x)
+$$
+
+得到：
+
+$$
+\boxed{
+s(\mu;x)
+=
+\frac{x-\mu}{\sigma^2}
+}
+$$
+
+### 与MLE的关系
+
+可以将MLE理解为：
+
+>找到一个参数，使得所有样本给出的“参数移动建议”加起来正好为零
+
+### 重要性质:期望为0
+
+这是统计学里一个特别重要的公式：
+
+$$
+\mathbb{E}_{X\sim p_\theta}
+\left[
+\nabla_\theta \log p_\theta(X)
+\right]
+=0
+$$
+
+为什么？
+
+因为：
+
+$$
+\nabla_\theta \log p_\theta(x)
+=
+\frac{\nabla_\theta p_\theta(x)}
+{p_\theta(x)}
+$$
+
+所以：
+
+$$
+\begin{aligned}
+\mathbb{E}[s(\theta;X)]
+&=
+\int p_\theta(x)
+\nabla_\theta \log p_\theta(x)\,dx
+\\
+&=
+\int \nabla_\theta p_\theta(x)\,dx
+\\
+&=
+\nabla_\theta
+\int p_\theta(x)\,dx
+\end{aligned}
+$$
+
+但概率密度积分等于 1：
+
+$$
+\int p_\theta(x)\,dx = 1
+$$
+
+所以：
+
+$$
+\nabla_\theta 1 = 0
+$$
+
+因此：
+
+$$
+\boxed{
+\mathbb{E}[s] = 0
+}
+$$
+
+### 机器学习中的 Score Function
+
+到了 score matching / diffusion model 中，经常会看到：
+
+$$
+s(x) = \nabla_x \log p(x)
+$$
+
+注意！
+
+这里不是：
+
+$$
+\nabla_\theta \log p_\theta(x)
+$$
+
+而是：
+
+$$
+\nabla_x \log p(x)
+$$
+
+也就是说：
+
+> 对 **数据 $x$** 求梯度，而不是对模型参数求梯度。
+
+这是 diffusion model 中通常所说的 score function。
+
+这两个一定要区分：
+
+| 场景 | Score |
+|---|---|
+| 经典统计学 | $\nabla_\theta \log p_\theta(x)$ |
+| Score matching / diffusion | $\nabla_x \log p(x)$ |
+
+数学结构一样：
+
+$$
+\nabla \log p
+$$
+
+但梯度对象不同
+
+### Score和Energy的关系
+
+Energy-based model 通常写成：
+
+$$
+p(x)=\frac{1}{Z}e^{-E(x)}
+$$
+
+取 log：
+
+$$
+\log p(x)=-E(x)-\log Z
+$$
+
+因此：
+
+$$
+\nabla_x \log p(x)=-\nabla_x E(x)
+$$
+
+所以：
+
+$$
+s(x)=-\nabla_x E(x)
+$$
+
+也就是说 score 相当于：
+
+> energy landscape 中指向下降最快方向的“力”。
+
+如果把 energy 想成山地高度：
+
+- 高 energy = 低概率；
+- 低 energy = 高概率。
+
+那么：
+
+$$
+-\nabla E(x)
+$$
+
+会把粒子推向 energy 更低的区域，也就是：
+
+$$
+p(x)
+$$
+
+更高的区域。
+
+>这里对$p(x)$取对数再求导就可以消掉$Z$,就不需要对Energy进行全局积分再进行归一化
+{: .prompt-tip}
+
+###  Score 为什么能用来生成数据
+
+这是 diffusion model 的关键思想。
+
+假设我们已经知道：
+
+$$
+s(x)=\nabla_x \log p(x)
+$$
+
+那么就知道在整个空间中：
+
+> “哪里是数据密集区？”
+
+比如真实图片分布集中在某个复杂的 manifold 附近。
+
+随机噪声一开始可能在任意地方。
+
+如果我们知道 score：
+
+$$
+\nabla_x \log p(x)
+$$
+
+就可以不断按照这个方向移动：
+
+$$
+x_{k+1}
+=
+x_k
++
+\epsilon \nabla_x \log p(x_k)
++
+\text{noise}
+$$
+
+这就是 Langevin dynamics 的核心形式：
+
+$$
+x_{k+1}
+=
+x_k
++
+\frac{\epsilon}{2}s(x_k)
++
+\sqrt{\epsilon}z_k
+$$
+
+>可以类比一个粒子受到一个确定力的作用的同时在做无规则的热运动
+{: .prompt-info}
+
+其中：
+
+$$
+z_k \sim \mathcal{N}(0,I)
+$$
+
+score 把样本推向高概率区域，而随机噪声提供扩散；在合适条件下，两者共同使目标分布 $p(x)$ 成为 Langevin dynamics 的平稳分布。
