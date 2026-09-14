@@ -66,9 +66,9 @@ $$
 
 式中：
 
-- \(c(t)\) 为系统输出量；
-- \(r(t)\) 为系统输入量；
-- \(a_0,a_1,\ldots,a_n\) 及 \(b_0,b_1,\ldots,b_m\) 均为由系统结构与参数所决定的实常数。
+- $c(t)$ 为系统输出量；
+- $r(t)$ 为系统输入量；
+- $a_0,a_1,\ldots,a_n$ 及 $b_0,b_1,\ldots,b_m$ 均为由系统结构与参数所决定的实常数。
 
 ### 2. 机械系统的微分方程
 
@@ -192,3 +192,102 @@ $$
 {: .prompt-info}
 
 ### 3. 电气系统的微分方程
+
+#### 电阻
+
+$$
+u(t)=R\,i(t)
+$$
+
+#### 电容
+
+$$
+u(t)=\frac{1}{C}\int i(t)\,dt
+$$
+
+电容：电压 = 电流的积分，电容值的倒数是常系数。
+
+#### 电感
+
+$$
+u(t)=L\frac{di(t)}{dt}
+$$
+
+## 三、系统的传递函数
+
+### 1. 拉氏变换的定义
+
+对于函数 $x(t)$，如果满足下列条件：
+
+1. 当 $t<0$ 时，
+
+   $$
+   x(t)=0
+   $$
+
+   当 $t>0$ 时，$x(t)$ 有有限个间断点；
+
+2. 积分
+
+   $$
+   \int_{0}^{\infty} x(t)e^{-st}\,dt
+   $$
+
+   存在，其中
+
+   $$
+   s=\sigma+j\omega
+   $$
+
+   为复变量。
+
+则如下积分变换称为 **Laplace 变换（拉氏变换）**：
+
+$$
+\boxed{
+X(s)=\mathcal{L}[x(t)]
+=\int_{0}^{\infty}x(t)e^{-st}\,dt
+}
+$$
+
+其中：
+
+- $x(t)$：原函数
+- $X(s)$：象函数
+- $s=\sigma+j\omega$：复变量
+
+### 2. 典型拉氏变换
+
+| 原函数 $x(t)$          | Laplace 变换 $X(s)$                             |
+| ---------------------- | ----------------------------------------------- |
+| $\delta(t)$            | $1$                                             |
+| $u(t)$                 | $\displaystyle \frac{1}{s}$                     |
+| $t^n$                  | $\displaystyle \frac{n!}{s^{n+1}}$              |
+| $e^{-at}$              | $\displaystyle \frac{1}{s+a}$                   |
+| $\sin \omega t$        | $\displaystyle \frac{\omega}{s^2+\omega^2}$     |
+| $\cos \omega t$        | $\displaystyle \frac{s}{s^2+\omega^2}$          |
+| $t^n e^{-at}$          | $\displaystyle \frac{n!}{(s+a)^{n+1}}$          |
+| $e^{-at}\sin \omega t$ | $\displaystyle \frac{\omega}{(s+a)^2+\omega^2}$ |
+| $e^{-at}\cos \omega t$ | $\displaystyle \frac{s+a}{(s+a)^2+\omega^2}$    |
+
+> 原函数乘以$e^{-at}$，象函数的$s$替换为$s+a$
+{: .prompt-info}
+
+### 3. 拉氏变换的基本性质和定理
+
+#### 线性性质
+
+$$
+\mathcal{L}\left[a x_1(t) \pm b x_2(t)\right]= aX_1(s)\pm bX_2(s)
+$$
+
+#### 微分性质
+
+若系统处于**零初始条件**下，则有：`
+
+$$
+\boxed{
+\mathcal{L}\left[\frac{d^n x(t)}{dt^n}\right]
+= s^nX(s)
+}
+$$
