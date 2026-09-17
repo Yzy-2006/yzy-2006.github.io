@@ -53,9 +53,6 @@ a_n \frac{d^n}{dt^n}c(t)
 +\cdots
 +a_1\frac{d}{dt}c(t)
 +a_0c(t)
-$$
-
-$$
 =
 b_m\frac{d^m}{dt^m}r(t)
 +b_{m-1}\frac{d^{m-1}}{dt^{m-1}}r(t)
@@ -213,7 +210,7 @@ $$
 u(t)=L\frac{di(t)}{dt}
 $$
 
-## 三、系统的传递函数
+## 三、拉氏变换
 
 ### 1. 拉氏变换的定义
 
@@ -291,3 +288,432 @@ $$
 = s^nX(s)
 }
 $$
+
+#### 积分性质(零初始状态下)
+
+$$
+\mathcal{L}\left[\int_{0}^{t} x(t)\,dt\right]
+= \frac{1}{s}X(s)
+$$
+
+#### 时域延时定理
+
+$$
+\mathcal{L}\left[x(t-\tau)\cdot 1(t-\tau)\right]
+= e^{-\tau s}X(s)
+$$
+
+#### 复域延时定理
+
+$$
+\mathcal{L}^{-1}F(s+a)=e^{-at}f(t)
+$$
+
+#### 终值定理
+
+$$
+\lim_{t\to\infty}x(t)
+=
+\lim_{s\to 0}sX(s)
+$$
+
+### 4.拉氏反变换
+
+**思路：** 采用部分分式展开法求拉氏反变换
+
+$$
+X(s)=
+\frac{
+b_0s^m+b_1s^{m-1}+\cdots+b_{m-1}s+b_m
+}{
+s^n+a_1s^{n-1}+\cdots+a_{n-1}s+a_n
+}
+\qquad (m\le n)
+$$
+
+将其进行部分分式展开：
+
+$$
+X(s)=X_1(s)+X_2(s)+\cdots+X_n(s)
+$$
+
+因此，其拉氏反变换为：
+
+$$
+x(t)
+=
+L^{-1}\left[X_1(s)\right]
++
+L^{-1}\left[X_2(s)\right]
++\cdots+
+L^{-1}\left[X_n(s)\right]
+$$
+
+---
+
+#### 只含不同单极点的
+
+$$
+X(s)
+=
+\frac{
+b_0s^m+b_1s^{m-1}+\cdots+b_{m-1}s+b_m
+}{
+(s+p_1)(s+p_2)\cdots(s+p_n)
+}
+$$
+
+将其进行部分分式展开：
+
+$$
+X(s)
+=
+\frac{A_1}{s+p_1}
++
+\frac{A_2}{s+p_2}
++
+\cdots
++
+\frac{A_k}{s+p_k}
++
+\cdots
++
+\frac{A_n}{s+p_n}
+$$
+
+用留数公式求待定系数
+
+$$
+A_k
+=
+\left.
+\lim_{s\to -p_k}
+\left[
+X(s)(s+p_k)
+\right]
+\right.
+$$
+
+用该公式取反变换
+
+$$
+\mathcal{L}^{-1}
+\left[
+\frac{A_i}{s+p_i}
+\right]
+=
+A_i e^{-p_i t}
+$$
+
+---
+
+#### 含共轭复数极点的情况
+
+$$
+X(s)
+=
+\frac{K_1s+K_2}{s^2+bs+c}
++
+\frac{K_3}{s+p_2}
++\cdots+
+\frac{K_n}{s+p_n}
+$$
+
+其中，第一项包含一对共轭复数极点：
+
+$$
+s_{1,2}=-\sigma\pm j\beta
+$$
+
+用留数公式求待定系数 $K_1$ 和 $K_2$
+
+$$
+K_1s+K_2
+=
+\left.
+X(s)\left(s^2+bs+c\right)
+\right|_{s=-\sigma+j\beta}
+$$
+
+
+将二次项整理为标准形式：
+
+$$
+\mathcal{L}^{-1}
+\left[
+\frac{K_1s+K_2}{s^2+bs+c}
+\right]
+=
+\mathcal{L}^{-1}
+\left[
+\frac{a_1(s+\sigma)}
+{(s+\sigma)^2+\beta^2}
++
+\frac{a_2\beta}
+{(s+\sigma)^2+\beta^2}
+\right]
+$$
+
+因此：
+
+$$
+\mathcal{L}^{-1}
+\left[
+\frac{K_1s+K_2}{s^2+bs+c}
+\right]
+=
+a_1e^{-\sigma t}\cos\beta t
++
+a_2e^{-\sigma t}\sin\beta t
+$$
+
+---
+
+#### 含重极点的情况
+
+若 $s=-p_1$ 为 $r$ 重极点，则应展开为 $r$ 个分式：
+
+$$
+X(s)
+=
+\frac{K_{11}}{(s+p_1)^r}
++
+\frac{K_{12}}{(s+p_1)^{r-1}}
++\cdots+
+\frac{K_{1r}}{s+p_1}
++
+\frac{K_2}{s+p_2}
++\cdots+
+\frac{K_n}{s+p_n}
+$$
+
+求待定系数
+
+$$
+K_{11}
+=
+\lim_{s\to -p_1}
+X(s)(s+p_1)^r
+$$
+
+$$
+K_{12}
+=
+\frac{1}{1!}
+\lim_{s\to -p_1}
+\frac{d}{ds}
+\left[
+X(s)(s+p_1)^r
+\right]
+$$
+
+$$
+K_{13}
+=
+\frac{1}{2!}
+\lim_{s\to -p_1}
+\frac{d^2}{ds^2}
+\left[
+X(s)(s+p_1)^r
+\right]
+$$
+
+一般地：
+
+$$
+K_{1r}
+=
+\frac{1}{(r-1)!}
+\lim_{s\to -p_1}
+\frac{d^{r-1}}{ds^{r-1}}
+\left[
+X(s)(s+p_1)^r
+\right]
+$$
+
+## 四、系统的传递函数
+
+### 1.传递函数的定义及特点
+
+**传递函数**：线性定常系统在**零初始条件**下，输出量的 Laplace 变换与输入量的 Laplace 变换之比。
+
+**零初始条件:** 当 $t<0$ 时，输入量及其各阶导数均为 $0$。
+
+
+系统的微分方程为：
+
+$$
+a_n\frac{d^n}{dt^n}x_o(t)
++a_{n-1}\frac{d^{n-1}}{dt^{n-1}}x_o(t)
++\cdots
++a_1\frac{d}{dt}x_o(t)
++a_0x_o(t)
+
+=
+b_m\frac{d^m}{dt^m}x_i(t)
++b_{m-1}\frac{d^{m-1}}{dt^{m-1}}x_i(t)
++\cdots
++b_1\frac{d}{dt}x_i(t)
++b_0x_i(t),
+\qquad (n\ge m)
+$$
+
+对微分方程进行 Laplace 变换，则有
+
+$$
+\left(
+a_ns^n+a_{n-1}s^{n-1}+\cdots+a_1s+a_0
+\right)X_o(s)
+
+=
+\left(
+b_ms^m+b_{m-1}s^{m-1}+\cdots+b_1s+b_0
+\right)X_i(s)
+$$
+
+根据传递函数定义，则有 $G(s)$ 如下
+
+$$
+G(s)
+=
+\frac{X_o(s)}{X_i(s)}
+=
+\frac{
+b_ms^m+b_{m-1}s^{m-1}+\cdots+b_1s+b_0
+}{
+a_ns^n+a_{n-1}s^{n-1}+\cdots+a_1s+a_0
+}
+$$
+
+#### 传递函数的特点
+
+- 传递函数是**复数域**中的系统数学模型，其参数仅取决于**系统本身的结构及参数**，与系统的输入形式无关；
+
+- 传递函数的**分母**反映了系统本身与外界无关的**固有特性**，分子反映了系统本身与外界之间的关系；
+
+- 传递函数表征了系统内在的**固有动态特性**；
+
+- 传递函数分母中 $s$ 的阶次 $n$ **不小于**分子中 $s$ 的阶次 $m$；
+
+- 传递函数可以有量纲，也可以无量纲；
+
+- 不同的物理系统可以具有相同的传递函数；
+
+- 同一系统选取不同物理量作为输入、输出，传递函数可不同；
+
+- 传递函数的概念，只适用**初始状态为零的线性定常系统**。
+
+### 2.传递函数的特征方程、零点、极点和放大系数
+
+$$
+G(s)
+=
+\frac{X_o(s)}{X_i(s)}
+=
+\frac{
+b_m s^m+b_{m-1}s^{m-1}+\cdots+b_1s+b_0
+}{
+a_n s^n+a_{n-1}s^{n-1}+\cdots+a_1s+a_0
+}
+=
+\frac{M(s)}{N(s)}
+$$
+
+式中：
+
+$$
+M(s)
+=
+b_m s^m+b_{m-1}s^{m-1}+\cdots+b_1s+b_0
+$$
+
+$$
+N(s)
+=
+a_n s^n+a_{n-1}s^{n-1}+\cdots+a_1s+a_0
+$$
+
+其中：
+
+$$
+N(s)=0
+$$
+
+称为系统的**特征方程**，其根称为系统的**特征根**。
+
+$$
+G(s)
+=
+\frac{X_o(s)}{X_i(s)}
+=
+\frac{M(s)}{N(s)}
+=
+\frac{
+K(s-z_1)(s-z_2)\cdots(s-z_m)
+}{
+(s-p_1)(s-p_2)\cdots(s-p_n)
+}
+\qquad (K\text{ 为常数})
+$$
+
+式中，
+
+$$
+M(s)
+=
+K(s-z_1)(s-z_2)\cdots(s-z_m)
+$$
+
+方程
+
+$$
+M(s)=0
+$$
+
+的根
+
+$$
+s=z_i,\qquad i=1,2,\ldots,m
+$$
+
+称为传递函数的**零点**。
+
+> 零点影响瞬态响应曲线的形状，不影响系统稳定性。
+{: .prompt-info}
+
+---
+
+$$
+N(s)
+=
+(s-p_1)(s-p_2)\cdots(s-p_n)
+$$
+
+方程
+
+$$
+N(s)=0
+$$
+
+的根
+
+$$
+s=p_j,\qquad j=1,2,\ldots,n
+$$
+
+称为传递函数的**极点**。
+
+**极点就是系统的特征根。**
+
+> 极点决定系统瞬态响应曲线的收敛性，即系统的稳定性。
+{: .prompt-info}
+
+### 3.关于传递函数的几点说明
+
+- 通常只**适用于线性定常系统**；
+
+- 传递函数是 $s$ 的复变函数，**完全取决于系统结构与参数**；
+
+- 传递函数是在**零初始条件下定义**的；
+
+- 传递函数只能表示系统**单输入与单输出的关系**，无法描述系统内部中间变量的变化情况。
