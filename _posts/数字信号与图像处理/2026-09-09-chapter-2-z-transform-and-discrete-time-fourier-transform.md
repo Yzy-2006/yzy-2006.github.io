@@ -55,11 +55,11 @@ $$
 >有限长序列的 $z$ 变换只有有限项，所以一般不会像无限长序列那样因为无穷级数而发散；真正可能出问题的地方主要只有 $z=0$ 和 $z=\infty$。
 {: ,prompt-info}
 
-| 序列位置     | Z 变换中的幂      | ROC         |
-| -------- | ------------ | ----------- |
+| 序列位置   | Z 变换中的幂     | ROC           |
+| ---------- | ---------------- | ------------- |
 | 全在 n > 0 | 只有 z⁻¹、z⁻²、… | 0 < \|z\| ≤ ∞ |
 | 全在 n < 0 | 只有 z、z²、…    | 0 ≤ \|z\| < ∞ |
-| 两边都有     | 同时有正幂和负幂     | 0 < \|z\| < ∞ |
+| 两边都有   | 同时有正幂和负幂 | 0 < \|z\| < ∞ |
 
 #### 右边序列(无限长度)
 
@@ -801,9 +801,9 @@ R_{x-}R_{h-}
 R_{x+}R_{h+}
 $$
 
-| 时域操作          | Z 域操作                    |
-| ------------- | ------------------------ |
-| $x(n)*h(n)$ | $X(z)H(z)$             |
+| 时域操作    | Z 域操作                  |
+| ----------- | ------------------------- |
+| $x(n)*h(n)$ | $X(z)H(z)$                |
 | $x(n)h(n)$  | $X(z)$ 与 $H(z)$ 的复卷积 |
 
 
@@ -1171,3 +1171,514 @@ x(n)+x(n+1)
 $$
 
 需要未来输入 $x(n+1)$，因此是非因果系统。
+
+## 二、离散时间傅立叶变换(DTFT)
+
+### 1.傅立叶级数
+
+连续周期函数可分解为一系列相互正交的基函数加权组合
+
+#### 复指数形式
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} c_k e^{jk\omega_0 t}
+$$
+
+其中系数
+
+$$
+c_k=\frac{1}{T_0}\int_{T_0}x(t)e^{-jk\omega_0 t}\,dt
+$$
+
+$T_0$ 为信号的周期，满足
+
+$$
+T_0=\frac{2\pi}{\omega_0}
+$$
+
+#### 三角形式
+
+$$
+x(t)=\frac{a_0}{2}+\sum_{k=1}^{\infty}\left[a_k\cos(k\omega_0t)+b_k\sin(k\omega_0t)\right]
+$$
+
+其中系数
+
+$$
+a_0=\frac{2}{T_0}\int_{-T_0/2}^{T_0/2}x(t)\,dt
+$$
+
+$$
+a_k=\frac{1}{T_0}\int_{-T_0/2}^{T_0/2}x(t)\cos(k\omega_0t)\,dt
+$$
+
+$$
+b_k=\frac{1}{T_0}\int_{-T_0/2}^{T_0/2}x(t)\sin(k\omega_0t)\,dt
+$$
+
+> 二者可以通过$\cos\theta=\frac{e^{j\theta}+e^{-j\theta}}{2}$和$\sin\theta=\frac{e^{j\theta}-e^{-j\theta}}{2j}$相互转化
+{: .prompt-info}
+
+### 2.傅里叶变换
+
+**核心思想:** 将非周期函数视为一个周期为无限长的周期函
+数,于是频率无限小，求和转为积分
+
+$$
+x(t)=\mathcal{F}^{-1}[X(\omega)]
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}X(\omega)e^{j\omega t}\,d\omega
+$$
+
+$$
+X(\omega)=\mathcal{F}[x(t)]=\int_{-\infty}^{\infty}x(t)e^{-j\omega t}\,dt
+$$
+
+### 3.离散时间傅立叶变换(DTFT)
+
+#### 离散时间傅立叶变换的定义
+
+离散时间傅立叶变换是$z$变换在复平面内单位圆上的特例，其中$z=e^{j\omega}$
+
+$$
+x(n)=\operatorname{IDTFT}[X(e^{j\omega})]
+=\frac{1}{2\pi}\int_{-\pi}^{\pi}X(e^{j\omega})e^{j\omega n}\,d\omega
+$$
+
+$$
+X(e^{j\omega})=\operatorname{DTFT}[x(n)]
+=\sum_{n=-\infty}^{\infty}x(n)e^{-j\omega n}
+$$
+
+其中$\omega$ 为连续实变量，$n$ 为离散量
+
+#### 离散时间傅立叶变换的收敛性
+
+**概念：** 对应 $z$ 变换的收敛域包括复平面内的单位圆
+
+**充分条件：一致收敛**
+
+$$
+\begin{aligned}
+|X(e^{j\omega})|
+&= \left|\sum_{n=-\infty}^{\infty}x(n)e^{-j\omega n}\right| \\
+&\leq \sum_{n=-\infty}^{\infty}|x(n)|\cdot|e^{-j\omega n}| \\
+&\leq \sum_{n=-\infty}^{\infty}|x(n)| < \infty
+\end{aligned}
+$$
+
+**意义**
+
+$$
+\lim_{N\to\infty}
+\left|
+X(e^{j\omega})
+-
+\sum_{n=-N}^{N}x(n)e^{-j\omega n}
+\right|
+=0
+$$
+
+> 加入越来越多的 $x(n)$ 项后，频谱近似越来越准确
+{: .prompt-info}
+
+**充分条件：均方收敛**
+
+$$
+\sum_{n=-\infty}^{\infty}|x(n)|^2<\infty
+$$
+
+> 均方收敛相较于一致收敛要求更弱
+{: ,prompt-info}
+
+**意义**
+
+$$
+\lim_{N\to\infty}
+\frac{1}{2\pi}
+\int_{-\pi}^{\pi}
+\left|
+X(e^{j\omega})
+-
+\sum_{n=-N}^{N}x(n)e^{-j\omega n}
+\right|^2
+d\omega
+=0
+$$
+
+>把整个频率区间里的“平方误差”取平均以后，误差趋近于 0
+{: .prompt-info}
+
+#### 吉布斯现象
+
+当原信号在某处突然跳变时，傅里叶级数的有限项近似会在跳变点附近出现明显的振荡和过冲；即使增加更多谐波，这个过冲也不会完全消失，只会越来越集中在跳变点附近。
+
+![](assets/img/posts/notes/digital_signal_and_image_processing/1.png)
+
+#### 离散时间傅立叶变换的主要性质
+
+- **线性**
+
+$$
+\mathrm{DTFT}\left[a x_1(n)+b x_2(n)\right]
+=
+aX_1\left(e^{j\omega}\right)
++
+bX_2\left(e^{j\omega}\right)
+$$
+
+- **序列移位**
+
+$$
+\mathrm{DTFT}\left[x(n-m)\right]
+=
+e^{-j\omega m}X\left(e^{j\omega}\right)
+$$
+
+- **乘以指数序列**
+
+$$
+\mathrm{DTFT}\left[a^n x(n)\right]
+=
+X\left(\frac{1}{a}e^{j\omega}\right)
+$$
+
+- **乘以复指数序列（调制性）**
+
+$$
+\mathrm{DTFT}\left[e^{j\omega_0 n}x(n)\right]
+=
+X\left(e^{j(\omega-\omega_0)}\right)
+$$
+
+- **线性加权序列**
+
+$$
+\mathrm{DTFT}\left[nx(n)\right]
+=
+j\frac{\mathrm{d}}{\mathrm{d}\omega}
+\left[
+X\left(e^{j\omega}\right)
+\right]
+$$
+
+- **序列共轭性**
+
+$$
+\mathrm{DTFT}\left[x^*(n)\right]
+=
+X^*\left(e^{-j\omega}\right)
+$$
+
+- **序列翻折**
+
+$$
+\mathrm{DTFT}\left[x(-n)\right]
+=
+X\left(e^{-j\omega}\right)
+$$
+
+- **时域卷积定理**
+
+$$
+\mathrm{DTFT}\left[x(n)*h(n)\right]
+=
+X\left(e^{j\omega}\right)
+H\left(e^{j\omega}\right)
+$$
+
+> **时域卷积 ⇔ 频域相乘**
+
+- **频域卷积定理**
+
+$$
+\mathrm{DTFT}\left[x(n)\cdot y(n)\right]
+=
+\frac{1}{2\pi}
+\left[
+X\left(e^{j\omega}\right)
+*
+Y\left(e^{j\omega}\right)
+\right]
+$$
+
+即
+
+$$
+\mathrm{DTFT}\left[x(n)\cdot y(n)\right]
+=
+\frac{1}{2\pi}
+\int_{-\pi}^{\pi}
+X\left(e^{j\theta}\right)
+Y\left(e^{j(\omega-\theta)}\right)
+\,\mathrm{d}\theta
+$$
+
+> **时域相乘 ⇔ 频域周期卷积**
+
+- **帕塞瓦定理**
+
+$$
+\sum_{n=-\infty}^{\infty}x(n)y(n)
+=
+\frac{1}{2\pi}
+\int_{-\pi}^{\pi}
+X\left(e^{j\omega}\right)
+Y\left(e^{-j\omega}\right)
+\,\mathrm{d}\omega
+$$
+
+特别地：
+
+$$
+\sum_{n=-\infty}^{\infty}|x(n)|^2
+=
+\frac{1}{2\pi}
+\int_{-\pi}^{\pi}
+\left|X\left(e^{j\omega}\right)\right|^2
+\,\mathrm{d}\omega
+$$
+
+其意义为：
+
+> **同一信号序列的总能量，在时域与频域中的表达始终相等。**
+
+### 4.序列及其傅立叶变换的一些对称性质
+
+**实序列可分解为奇对称序列和偶对称序列之和**
+
+$$
+x(n)=x_e(n)+x_o(n)
+$$
+
+二者分别满足：
+
+$$
+x_e(n)=x_e(-n)
+$$
+
+$$
+x_o(n)=-x_o(-n)
+$$
+
+**序列的傅立叶变换同样可分解为共轭对称分量和共轭反对称分量之和**
+
+$$
+X\left(e^{j\omega}\right)
+=
+X_e\left(e^{j\omega}\right)
++
+X_o\left(e^{j\omega}\right)
+$$
+
+**各种分量对应关系**
+
+$$
+x(n)
+=
+\operatorname{Re}[x(n)]
++
+j\operatorname{Im}[x(n)]
+$$
+
+对应关系为：
+
+$$
+\begin{aligned}
+x(n)
+&\longleftrightarrow
+X\left(e^{j\omega}\right) \\[4pt]
+\operatorname{Re}[x(n)]
+&\longleftrightarrow
+X_e\left(e^{j\omega}\right) \\[4pt]
+j\operatorname{Im}[x(n)]
+&\longleftrightarrow
+X_o\left(e^{j\omega}\right)
+\end{aligned}
+$$
+
+以及：
+
+$$
+x(n)
+=
+x_e(n)
++
+x_o(n)
+$$
+
+对应关系为：
+
+$$
+\begin{aligned}
+x(n)
+&\longleftrightarrow
+X\left(e^{j\omega}\right) \\[4pt]
+x_e(n)
+&\longleftrightarrow
+\operatorname{Re}\left[X\left(e^{j\omega}\right)\right] \\[4pt]
+x_o(n)
+&\longleftrightarrow
+j\operatorname{Im}\left[X\left(e^{j\omega}\right)\right]
+\end{aligned}
+$$
+
+### 5.周期序列的傅立叶变换
+
+**周期为 $N$ 的单位采样序列**
+
+$$
+x(n)
+=
+\sum_{i=-\infty}^{\infty}
+\delta(n-iN)
+$$
+
+对应傅立叶变换：
+
+$$
+X\left(e^{j\omega}\right)
+=
+\frac{2\pi}{N}
+\sum_{i=-\infty}^{\infty}
+\delta\left(
+\omega-\frac{2\pi}{N}i
+\right)
+$$
+
+**周期为 $N$ 的通用周期序列**
+
+$$
+\tilde{x}(n)
+=
+x(n)
+*
+\sum_{i=-\infty}^{\infty}
+\delta(n-iN)
+$$
+
+对应傅立叶变换：
+
+$$
+\tilde{X}\left(e^{j\omega}\right)
+=
+\frac{2\pi}{N}
+\sum_{i=-\infty}^{\infty}
+X\left(
+e^{j\frac{2\pi}{N}i}
+\right)
+\delta\left(
+\omega-\frac{2\pi}{N}i
+\right)
+$$
+
+## 三、$s$平面到$z$平面的映射
+
+### 1.拉普拉斯变换
+
+- **正变换**
+
+$$
+X(s)
+=
+\mathcal{L}[x(t)]
+=
+\int_{0}^{\infty}
+x(t)e^{-st}\,\mathrm{d}t
+$$
+
+- **逆变换**
+
+$$
+x(t)
+=
+\mathcal{L}^{-1}[X(s)]
+=
+\frac{1}{2\pi i}
+\lim_{T\to\infty}
+\int_{\gamma-iT}^{\gamma+iT}
+e^{st}X(s)\,\mathrm{d}s
+$$
+
+其中，$x(t)$ 为连续函数，$s=\sigma+j\omega$ 为复数，$\sigma$ 为衰减因子。
+
+与傅立叶变换相比，拉普拉斯变换增加了衰减因子。
+
+## 四、LSI系统的频域表征 
+
+### 1.LSI系统的描述方法
+
+- **单位采样响应（时域）**
+
+$$
+h(n)=\mathcal{T}[\delta(n)]
+$$
+
+- **常系数差分方程（时域）**
+
+$$
+y(n)
+=
+\sum_{m=0}^{M} b_m x(n-m)
+-
+\sum_{k=1}^{N} a_k y(n-k)
+$$
+
+- **系统函数（z 域）**
+
+$$
+H(z)
+=
+\mathcal{Z}[h(n)]
+=
+\frac{Y(z)}{X(z)}
+$$
+
+- **频率响应（频域）**
+
+$$
+H\left(e^{j\omega}\right)
+=
+\frac{Y\left(e^{j\omega}\right)}
+{X\left(e^{j\omega}\right)}
+=
+\frac{
+\displaystyle \sum_{m=0}^{M} b_m e^{-j\omega m}
+}{
+\displaystyle 1+\sum_{k=1}^{N} a_k e^{-j\omega k}
+}
+$$
+
+### 2.LSI系统的频率响应
+
+**当输入为复指数序列**
+
+$$
+x(n)=e^{j\omega n},\qquad -\infty<n<\infty
+$$
+
+**则输出为**
+
+$$
+y(n)
+=
+H\left(e^{j\omega}\right)e^{j\omega n}
+$$
+
+**频率响应即为 $h(n)$ 的离散时间傅立叶变换**
+
+$$
+H\left(e^{j\omega}\right)
+=
+\sum_{n=-\infty}^{\infty}
+h(n)e^{-j\omega n}
+$$
+
+### 3.LSI系统的频率响应特性
+
+- 若 $h(n)$ 绝对可和，即系统稳定，则 $H\left(e^{j\omega}\right)$ 一定存在且连续。
+
+- $H\left(e^{j\omega}\right)$ 具有周期性，周期为 $2\pi$。
+
+- 一个周期内，$\omega=0$ 和 $\omega=2\pi$ 共同代表最低频率，$\omega=\pi$ 代表最高频率。
+
+- 若输入为正弦序列，则稳态输出为同频的正弦序列，其幅值和相位受到系统频率响应的影响。
